@@ -131,8 +131,8 @@ HOSST="sleeping-bag"
 USEER="itsshashanksp"
 
 # setup telegram env
-export BOT_MSG_URL="https://api.telegram.org/bot$8072574375:AAH3sP6roTqmiTLD0eip9ji_aCF0-iQHv0g/sendMessage"
-export BOT_BUILD_URL="https://api.telegram.org/bot$8072574375:AAH3sP6roTqmiTLD0eip9ji_aCF0-iQHv0g/sendDocument"
+export BOT_MSG_URL="https://api.telegram.org/bot8072574375:AAH3sP6roTqmiTLD0eip9ji_aCF0-iQHv0g/sendMessage"
+export BOT_BUILD_URL="https://api.telegram.org/bot8072574375:AAH3sP6roTqmiTLD0eip9ji_aCF0-iQHv0g/sendDocument"
 
 tg_post_msg() {
         curl -s -X POST "$BOT_MSG_URL" -d chat_id="$-1002531162824" \
