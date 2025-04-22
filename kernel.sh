@@ -131,11 +131,11 @@ HOSST="sleeping-bag"
 USEER="itsshashanksp"
 
 # setup telegram env
-export BOT_MSG_URL="https://api.telegram.org/bot$API_BOT/sendMessage"
-export BOT_BUILD_URL="https://api.telegram.org/bot$API_BOT/sendDocument"
+export BOT_MSG_URL="https://api.telegram.org/bot$8072574375:AAH3sP6roTqmiTLD0eip9ji_aCF0-iQHv0g/sendMessage"
+export BOT_BUILD_URL="https://api.telegram.org/bot$8072574375:AAH3sP6roTqmiTLD0eip9ji_aCF0-iQHv0g/sendDocument"
 
 tg_post_msg() {
-        curl -s -X POST "$BOT_MSG_URL" -d chat_id="$2" \
+        curl -s -X POST "$BOT_MSG_URL" -d chat_id="$-1001949449182" \
         -d "parse_mode=html" \
         -d text="$1"
 }
@@ -146,7 +146,7 @@ tg_post_build() {
 
         #Show the Checksum alongwith caption
         curl --progress-bar -F document=@"$1" "$BOT_BUILD_URL" \
-        -F chat_id="$2" \
+        -F chat_id="$-1001949449182" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
         -F caption="$3 build finished in $(($Diff / 60)) minutes and $(($Diff % 60)) seconds | <b>MD5 Checksum : </b><code>$MD5CHECK</code>"
@@ -154,7 +154,7 @@ tg_post_build() {
 
 tg_error() {
         curl --progress-bar -F document=@"$1" "$BOT_BUILD_URL" \
-        -F chat_id="$2" \
+        -F chat_id="$-1001949449182" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
         -F caption="$3Failed to build , check <code>error.log</code>"
@@ -207,7 +207,7 @@ make "$DEFCONFIG_COMMON" O=out
 make "$DEFCONFIG_DEVICE" O=out
 
 echo -e "$yellow << compiling the kernel >> \n $white"
-tg_post_msg "Successful triggered Compiling kernel for $DEVICE $CODENAME" "$CHATID"
+tg_post_msg "Successful triggered Compiling kernel for $DEVICE $CODENAME" "$-1001949449182"
 
 build_kernel || error=true
 
@@ -223,8 +223,8 @@ export dtb="$PWD"/out/arch/arm64/boot/dtb.img
         else
                 echo -e "$red << Failed to compile the kernel , Check up to find the error >>$white"
                 tg_post_msg "Kernel failed to compile uploading error log"
-                tg_error "error.log" "$CHATID"
-                tg_post_msg "done" "$CHATID"
+                tg_error "error.log" "$-1001949449182"
+                tg_post_msg "done" "$-1001949449182"
                 rm -rf out
                 rm -rf testing.log
                 rm -rf error.log
@@ -245,8 +245,8 @@ export dtb="$PWD"/out/arch/arm64/boot/dtb.img
                 curl -sLo zipsigner-3.0.jar https://gitlab.com/itsshashanksp/zipsigner/-/raw/master/bin/zipsigner-3.0-dexed.jar
                 java -jar zipsigner-3.0.jar "$ZIP".zip "$ZIP"-signed.zip
                 tg_post_msg "Kernel successfully compiled uploading ZIP" "$CHATID"
-                tg_post_build "$ZIP"-signed.zip "$CHATID"
-                tg_post_msg "done" "$CHATID"
+                tg_post_build "$ZIP"-signed.zip "$-1001949449182"
+                tg_post_msg "done" "$-1001949449182"
                 cd ..
                 rm -rf error.log
                 rm -rf out
