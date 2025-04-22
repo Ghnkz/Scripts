@@ -135,7 +135,7 @@ export BOT_MSG_URL="https://api.telegram.org/bot8072574375:AAH3sP6roTqmiTLD0eip9
 export BOT_BUILD_URL="https://api.telegram.org/bot8072574375:AAH3sP6roTqmiTLD0eip9ji_aCF0-iQHv0g/sendDocument"
 
 tg_post_msg() {
-        curl -s -X POST "$BOT_MSG_URL" -d chat_id="$-1002531162824" \
+        curl -s -X POST "$BOT_MSG_URL" -d chat_id="$@shinerdump" \
         -d "parse_mode=html" \
         -d text="$1"
 }
@@ -146,7 +146,7 @@ tg_post_build() {
 
         #Show the Checksum alongwith caption
         curl --progress-bar -F document=@"$1" "$BOT_BUILD_URL" \
-        -F chat_id="$-1002531162824" \
+        -F chat_id="$@shinerdump" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
         -F caption="$3 build finished in $(($Diff / 60)) minutes and $(($Diff % 60)) seconds | <b>MD5 Checksum : </b><code>$MD5CHECK</code>"
@@ -154,7 +154,7 @@ tg_post_build() {
 
 tg_error() {
         curl --progress-bar -F document=@"$1" "$BOT_BUILD_URL" \
-        -F chat_id="$-1002531162824" \
+        -F chat_id="$@shinerdump" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
         -F caption="$3Failed to build , check <code>error.log</code>"
