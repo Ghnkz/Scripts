@@ -123,9 +123,7 @@ DEFCONFIG_DEVICE="vendor/violet.config"
 AnyKernel="https://github.com/itsshashanksp/AnyKernel3.git"
 AnyKernelbranch="violet"
 fi
-curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -
-git apply KernelSU-hook.patch
-sed -i 's/CONFIG_KSU=n/CONFIG_KSU=y/g' arch/arm64/configs/vendor/sdmsteppe-perf_defconfig
+
 # Kernel build release tag
 KRNL_REL_TAG="$KERNEL_TAG"
 
